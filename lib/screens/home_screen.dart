@@ -1,5 +1,3 @@
-import 'package:curve_extrapolation/screens/draw_line.dart';
-
 import 'package:flutter/material.dart';
 
 import '../utils/open_painter.dart';
@@ -42,10 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() {
               onNextpressed = true;
             });
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => DrawLine(
-                      offsets: offsets,
-                    )));
           },
           child: const Text("Next")),
       body: Container(
