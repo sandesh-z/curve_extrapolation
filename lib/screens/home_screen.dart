@@ -1,6 +1,7 @@
+import 'package:curve_extrapolation/home_bloc/home_bloc.dart';
+import 'package:curve_extrapolation/screens/draggable_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../utils/open_painter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -40,22 +41,33 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() {
               onNextpressed = true;
             });
+            context.read<HomeBloc>().add(HomeEvent.addControlPoints(offsets));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => DraggableScreen(offsets: offsets)));
           },
           child: const Text("Next")),
-      body: Container(
-        color: Colors.white,
-        height: double.maxFinite,
-        width: double.maxFinite,
-        child: InkWell(
-          mouseCursor: MaterialStateMouseCursor.clickable,
-          onTapDown: (TapDownDetails details) {
-            //paint
-            onTapDown(context, details);
-            setState(() {
-              paint = true;
-            });
-          },
-          child: CustomPaint(painter: OpenPainter(offset: offsets)),
+      body: InkWell(
+        mouseCursor: MaterialStateMouseCursor.clickable,
+        onTapDown: (TapDownDetails details) {
+          //paint
+          onTapDown(context, details);
+        },
+        child: Stack(
+          children: [
+            for (var offset in offsets) ...[
+              Stack(
+                children: [
+                  Positioned(
+                      left: offset.dx - 10,
+                      top: offset.dy - 10,
+                      child: const CircleAvatar(
+                        radius: 10,
+                        backgroundColor: Colors.red,
+                      ))
+                ],
+              ),
+            ]
+          ],
         ),
       ),
     );
