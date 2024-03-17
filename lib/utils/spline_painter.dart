@@ -15,12 +15,12 @@ class SplinePainter extends CustomPainter {
     final bezierPaint = Paint()
       // set the edges of stroke to be rounded
       ..strokeCap = StrokeCap.round
-      ..strokeWidth = 20;
-    // apply a gradient
-    // ..shader = const LinearGradient(colors: [
-    //   Colors.purple,
-    //   Colors.teal,
-    // ]).createShader(Offset(0, size.height) & size);
+      ..strokeWidth = 20
+      // apply a gradient
+      ..shader = const LinearGradient(colors: [
+        Colors.purple,
+        Colors.teal,
+      ]).createShader(Offset(0, size.height) & size);
 
     final samples = spline.generateSamples().map((e) => e.value).toList();
     final sampledPoints = [samples.first]; // Start with the first point
