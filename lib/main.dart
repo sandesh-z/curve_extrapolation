@@ -1,5 +1,7 @@
+import 'package:curve_extrapolation/home_bloc/home_bloc.dart';
 import 'package:curve_extrapolation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const CurveExtrapolationApp());
@@ -10,10 +12,13 @@ class CurveExtrapolationApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: ThemeData(
-          useMaterial3: true,
-        ),
-        home: const HomeScreen());
+    return BlocProvider(
+      create: (context) => HomeBloc(),
+      child: MaterialApp(
+          theme: ThemeData(
+            useMaterial3: true,
+          ),
+          home: const HomeScreen()),
+    );
   }
 }
