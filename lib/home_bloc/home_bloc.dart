@@ -10,13 +10,9 @@ part 'home_event.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeState.initial()) {
-    on<_SetinitialState>(_onSetinitialState);
     on<_AddControlPoints>(_onAddControlPoints);
     on<_UpdateControlPoints>(_onUpdateControlPoints);
   }
-
-  FutureOr<void> _onSetinitialState(
-      _SetinitialState event, Emitter<HomeState> emit) {}
 
   FutureOr<void> _onAddControlPoints(
       _AddControlPoints event, Emitter<HomeState> emit) {
@@ -25,9 +21,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _onUpdateControlPoints(
       _UpdateControlPoints event, Emitter<HomeState> emit) {
-    emit(state.copyWith(isLoading: true));
     emit(state.copyWith(
-        isLoading: false,
         controlPoints: state.controlPoints..[event.index] = event.offset));
   }
 }
