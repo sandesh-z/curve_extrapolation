@@ -33,6 +33,7 @@ class _DraggableScreenState extends State<DraggableScreen> {
                   child: Stack(
                     children: [
                       DraggedPoint(
+                        parentSize: 400.0,
                         initialPosition: offset,
                         index: index,
                       ),
@@ -40,6 +41,9 @@ class _DraggableScreenState extends State<DraggableScreen> {
                   ),
                 );
               }),
+              CustomPaint(
+                  painter:
+                      SplinePainter(offset: widget.offsets, strokeWidth: 2.0)),
             ],
           );
         },
