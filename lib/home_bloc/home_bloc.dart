@@ -12,6 +12,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeState.initial()) {
     on<_AddControlPoints>(_onAddControlPoints);
     on<_UpdateControlPoints>(_onUpdateControlPoints);
+    on<_AddStartPoint>(__onAddStartPoint);
   }
 
   FutureOr<void> _onAddControlPoints(
@@ -23,5 +24,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       _UpdateControlPoints event, Emitter<HomeState> emit) {
     emit(state.copyWith(
         controlPoints: state.controlPoints..[event.index] = event.offset));
+    emit(state.copyWith(endPoint: state.controlPoints.last));
+  }
+
+  FutureOr<void> __onAddStartPoint(
+      _AddStartPoint event, Emitter<HomeState> emit) {
+    emit(state.copyWith(startpoint: event.startPoint));
   }
 }

@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeState {
   List<Offset> get controlPoints => throw _privateConstructorUsedError;
+  Offset get endPoint => throw _privateConstructorUsedError;
+  Offset get startpoint => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -28,7 +30,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({List<Offset> controlPoints});
+  $Res call({List<Offset> controlPoints, Offset endPoint, Offset startpoint});
 }
 
 /// @nodoc
@@ -45,12 +47,22 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? controlPoints = null,
+    Object? endPoint = null,
+    Object? startpoint = null,
   }) {
     return _then(_value.copyWith(
       controlPoints: null == controlPoints
           ? _value.controlPoints
           : controlPoints // ignore: cast_nullable_to_non_nullable
               as List<Offset>,
+      endPoint: null == endPoint
+          ? _value.endPoint
+          : endPoint // ignore: cast_nullable_to_non_nullable
+              as Offset,
+      startpoint: null == startpoint
+          ? _value.startpoint
+          : startpoint // ignore: cast_nullable_to_non_nullable
+              as Offset,
     ) as $Val);
   }
 }
@@ -63,7 +75,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Offset> controlPoints});
+  $Res call({List<Offset> controlPoints, Offset endPoint, Offset startpoint});
 }
 
 /// @nodoc
@@ -78,12 +90,22 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? controlPoints = null,
+    Object? endPoint = null,
+    Object? startpoint = null,
   }) {
     return _then(_$HomeStateImpl(
       controlPoints: null == controlPoints
           ? _value.controlPoints
           : controlPoints // ignore: cast_nullable_to_non_nullable
               as List<Offset>,
+      endPoint: null == endPoint
+          ? _value.endPoint
+          : endPoint // ignore: cast_nullable_to_non_nullable
+              as Offset,
+      startpoint: null == startpoint
+          ? _value.startpoint
+          : startpoint // ignore: cast_nullable_to_non_nullable
+              as Offset,
     ));
   }
 }
@@ -91,15 +113,22 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeStateImpl implements _HomeState {
-  _$HomeStateImpl({this.controlPoints = const []});
+  _$HomeStateImpl(
+      {this.controlPoints = const [],
+      required this.endPoint,
+      required this.startpoint});
 
   @override
   @JsonKey()
   final List<Offset> controlPoints;
+  @override
+  final Offset endPoint;
+  @override
+  final Offset startpoint;
 
   @override
   String toString() {
-    return 'HomeState(controlPoints: $controlPoints)';
+    return 'HomeState(controlPoints: $controlPoints, endPoint: $endPoint, startpoint: $startpoint)';
   }
 
   @override
@@ -108,12 +137,16 @@ class _$HomeStateImpl implements _HomeState {
         (other.runtimeType == runtimeType &&
             other is _$HomeStateImpl &&
             const DeepCollectionEquality()
-                .equals(other.controlPoints, controlPoints));
+                .equals(other.controlPoints, controlPoints) &&
+            (identical(other.endPoint, endPoint) ||
+                other.endPoint == endPoint) &&
+            (identical(other.startpoint, startpoint) ||
+                other.startpoint == startpoint));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(controlPoints));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(controlPoints), endPoint, startpoint);
 
   @JsonKey(ignore: true)
   @override
@@ -123,10 +156,17 @@ class _$HomeStateImpl implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  factory _HomeState({final List<Offset> controlPoints}) = _$HomeStateImpl;
+  factory _HomeState(
+      {final List<Offset> controlPoints,
+      required final Offset endPoint,
+      required final Offset startpoint}) = _$HomeStateImpl;
 
   @override
   List<Offset> get controlPoints;
+  @override
+  Offset get endPoint;
+  @override
+  Offset get startpoint;
   @override
   @JsonKey(ignore: true)
   _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
@@ -139,18 +179,21 @@ mixin _$HomeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(Offset offset, int index) updateControlPoints,
     required TResult Function(List<Offset> controlPoints) addControlPoints,
+    required TResult Function(Offset startPoint) addStartPoint,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Offset offset, int index)? updateControlPoints,
     TResult? Function(List<Offset> controlPoints)? addControlPoints,
+    TResult? Function(Offset startPoint)? addStartPoint,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Offset offset, int index)? updateControlPoints,
     TResult Function(List<Offset> controlPoints)? addControlPoints,
+    TResult Function(Offset startPoint)? addStartPoint,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -158,18 +201,21 @@ mixin _$HomeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateControlPoints value) updateControlPoints,
     required TResult Function(_AddControlPoints value) addControlPoints,
+    required TResult Function(_AddStartPoint value) addStartPoint,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateControlPoints value)? updateControlPoints,
     TResult? Function(_AddControlPoints value)? addControlPoints,
+    TResult? Function(_AddStartPoint value)? addStartPoint,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateControlPoints value)? updateControlPoints,
     TResult Function(_AddControlPoints value)? addControlPoints,
+    TResult Function(_AddStartPoint value)? addStartPoint,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -267,6 +313,7 @@ class _$UpdateControlPointsImpl implements _UpdateControlPoints {
   TResult when<TResult extends Object?>({
     required TResult Function(Offset offset, int index) updateControlPoints,
     required TResult Function(List<Offset> controlPoints) addControlPoints,
+    required TResult Function(Offset startPoint) addStartPoint,
   }) {
     return updateControlPoints(offset, index);
   }
@@ -276,6 +323,7 @@ class _$UpdateControlPointsImpl implements _UpdateControlPoints {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Offset offset, int index)? updateControlPoints,
     TResult? Function(List<Offset> controlPoints)? addControlPoints,
+    TResult? Function(Offset startPoint)? addStartPoint,
   }) {
     return updateControlPoints?.call(offset, index);
   }
@@ -285,6 +333,7 @@ class _$UpdateControlPointsImpl implements _UpdateControlPoints {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Offset offset, int index)? updateControlPoints,
     TResult Function(List<Offset> controlPoints)? addControlPoints,
+    TResult Function(Offset startPoint)? addStartPoint,
     required TResult orElse(),
   }) {
     if (updateControlPoints != null) {
@@ -298,6 +347,7 @@ class _$UpdateControlPointsImpl implements _UpdateControlPoints {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateControlPoints value) updateControlPoints,
     required TResult Function(_AddControlPoints value) addControlPoints,
+    required TResult Function(_AddStartPoint value) addStartPoint,
   }) {
     return updateControlPoints(this);
   }
@@ -307,6 +357,7 @@ class _$UpdateControlPointsImpl implements _UpdateControlPoints {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateControlPoints value)? updateControlPoints,
     TResult? Function(_AddControlPoints value)? addControlPoints,
+    TResult? Function(_AddStartPoint value)? addStartPoint,
   }) {
     return updateControlPoints?.call(this);
   }
@@ -316,6 +367,7 @@ class _$UpdateControlPointsImpl implements _UpdateControlPoints {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateControlPoints value)? updateControlPoints,
     TResult Function(_AddControlPoints value)? addControlPoints,
+    TResult Function(_AddStartPoint value)? addStartPoint,
     required TResult orElse(),
   }) {
     if (updateControlPoints != null) {
@@ -405,6 +457,7 @@ class _$AddControlPointsImpl implements _AddControlPoints {
   TResult when<TResult extends Object?>({
     required TResult Function(Offset offset, int index) updateControlPoints,
     required TResult Function(List<Offset> controlPoints) addControlPoints,
+    required TResult Function(Offset startPoint) addStartPoint,
   }) {
     return addControlPoints(controlPoints);
   }
@@ -414,6 +467,7 @@ class _$AddControlPointsImpl implements _AddControlPoints {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Offset offset, int index)? updateControlPoints,
     TResult? Function(List<Offset> controlPoints)? addControlPoints,
+    TResult? Function(Offset startPoint)? addStartPoint,
   }) {
     return addControlPoints?.call(controlPoints);
   }
@@ -423,6 +477,7 @@ class _$AddControlPointsImpl implements _AddControlPoints {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Offset offset, int index)? updateControlPoints,
     TResult Function(List<Offset> controlPoints)? addControlPoints,
+    TResult Function(Offset startPoint)? addStartPoint,
     required TResult orElse(),
   }) {
     if (addControlPoints != null) {
@@ -436,6 +491,7 @@ class _$AddControlPointsImpl implements _AddControlPoints {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateControlPoints value) updateControlPoints,
     required TResult Function(_AddControlPoints value) addControlPoints,
+    required TResult Function(_AddStartPoint value) addStartPoint,
   }) {
     return addControlPoints(this);
   }
@@ -445,6 +501,7 @@ class _$AddControlPointsImpl implements _AddControlPoints {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_UpdateControlPoints value)? updateControlPoints,
     TResult? Function(_AddControlPoints value)? addControlPoints,
+    TResult? Function(_AddStartPoint value)? addStartPoint,
   }) {
     return addControlPoints?.call(this);
   }
@@ -454,6 +511,7 @@ class _$AddControlPointsImpl implements _AddControlPoints {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateControlPoints value)? updateControlPoints,
     TResult Function(_AddControlPoints value)? addControlPoints,
+    TResult Function(_AddStartPoint value)? addStartPoint,
     required TResult orElse(),
   }) {
     if (addControlPoints != null) {
@@ -470,5 +528,145 @@ abstract class _AddControlPoints implements HomeEvent {
   List<Offset> get controlPoints;
   @JsonKey(ignore: true)
   _$$AddControlPointsImplCopyWith<_$AddControlPointsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddStartPointImplCopyWith<$Res> {
+  factory _$$AddStartPointImplCopyWith(
+          _$AddStartPointImpl value, $Res Function(_$AddStartPointImpl) then) =
+      __$$AddStartPointImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Offset startPoint});
+}
+
+/// @nodoc
+class __$$AddStartPointImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$AddStartPointImpl>
+    implements _$$AddStartPointImplCopyWith<$Res> {
+  __$$AddStartPointImplCopyWithImpl(
+      _$AddStartPointImpl _value, $Res Function(_$AddStartPointImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? startPoint = null,
+  }) {
+    return _then(_$AddStartPointImpl(
+      null == startPoint
+          ? _value.startPoint
+          : startPoint // ignore: cast_nullable_to_non_nullable
+              as Offset,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddStartPointImpl implements _AddStartPoint {
+  _$AddStartPointImpl(this.startPoint);
+
+  @override
+  final Offset startPoint;
+
+  @override
+  String toString() {
+    return 'HomeEvent.addStartPoint(startPoint: $startPoint)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddStartPointImpl &&
+            (identical(other.startPoint, startPoint) ||
+                other.startPoint == startPoint));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, startPoint);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddStartPointImplCopyWith<_$AddStartPointImpl> get copyWith =>
+      __$$AddStartPointImplCopyWithImpl<_$AddStartPointImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Offset offset, int index) updateControlPoints,
+    required TResult Function(List<Offset> controlPoints) addControlPoints,
+    required TResult Function(Offset startPoint) addStartPoint,
+  }) {
+    return addStartPoint(startPoint);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Offset offset, int index)? updateControlPoints,
+    TResult? Function(List<Offset> controlPoints)? addControlPoints,
+    TResult? Function(Offset startPoint)? addStartPoint,
+  }) {
+    return addStartPoint?.call(startPoint);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Offset offset, int index)? updateControlPoints,
+    TResult Function(List<Offset> controlPoints)? addControlPoints,
+    TResult Function(Offset startPoint)? addStartPoint,
+    required TResult orElse(),
+  }) {
+    if (addStartPoint != null) {
+      return addStartPoint(startPoint);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateControlPoints value) updateControlPoints,
+    required TResult Function(_AddControlPoints value) addControlPoints,
+    required TResult Function(_AddStartPoint value) addStartPoint,
+  }) {
+    return addStartPoint(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_UpdateControlPoints value)? updateControlPoints,
+    TResult? Function(_AddControlPoints value)? addControlPoints,
+    TResult? Function(_AddStartPoint value)? addStartPoint,
+  }) {
+    return addStartPoint?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateControlPoints value)? updateControlPoints,
+    TResult Function(_AddControlPoints value)? addControlPoints,
+    TResult Function(_AddStartPoint value)? addStartPoint,
+    required TResult orElse(),
+  }) {
+    if (addStartPoint != null) {
+      return addStartPoint(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddStartPoint implements HomeEvent {
+  factory _AddStartPoint(final Offset startPoint) = _$AddStartPointImpl;
+
+  Offset get startPoint;
+  @JsonKey(ignore: true)
+  _$$AddStartPointImplCopyWith<_$AddStartPointImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

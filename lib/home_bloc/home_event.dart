@@ -6,4 +6,5 @@ class HomeEvent with _$HomeEvent {
       _UpdateControlPoints;
   factory HomeEvent.addControlPoints(List<Offset> controlPoints) =
       _AddControlPoints;
+  factory HomeEvent.addStartPoint(Offset startPoint) = _AddStartPoint;
 }
