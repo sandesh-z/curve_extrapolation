@@ -1,16 +1,18 @@
 import 'dart:ui';
 
+import 'package:curve_extrapolation/home_bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplinePainter extends CustomPainter {
   final List<Offset> offset;
   final double strokeWidth;
+  final BuildContext context;
 
-  SplinePainter({super.repaint, required this.offset, this.strokeWidth = 20.0});
+  SplinePainter(this.context,
+      {super.repaint, required this.offset, this.strokeWidth = 20.0});
   @override
   void paint(Canvas canvas, Size size) {
-    // canvas.drawPaint(Paint()..color = Colors.white);
-
     final spline = CatmullRomSpline(offset);
 
     final bezierPaint = Paint()
@@ -18,6 +20,25 @@ class SplinePainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..strokeWidth = strokeWidth
       ..color = strokeWidth < 20.0 ? Colors.white : Colors.green;
+
+    //generates samples to draw curve
+    List<Offset> list = generatedFilteredSamples(spline, strokeWidth);
+
+    //draw single curve for screen 1 and add start and end point which are last points of list of balls
+    if (strokeWidth <= 5) {
+      Offset startPoint = list[list.length - 8];
+
+      context.read<HomeBloc>().add(HomeEvent.addStartPoint(startPoint));
+
+      canvas.drawPoints(
+        PointMode.points,
+        generatedFilteredSamples(spline, strokeWidth),
+        bezierPaint,
+      );
+      return;
+    }
+
+    //draw overlapping both curve and balls
 
     canvas.drawPoints(
       PointMode.points,
@@ -40,7 +61,6 @@ class SplinePainter extends CustomPainter {
       final currentPoint = samples[i];
       final distance = (currentPoint - previousPoint).distance;
       if (distance >= strokeWidth) {
-        // Adjust this threshold as needed
         sampledPoints.add(currentPoint);
       }
     }
